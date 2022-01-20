@@ -15,6 +15,7 @@ import { Response } from 'express';
 import { HttpExceptionFilter } from 'src/exceptions/http-exception.filter';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserLoginDto } from './dto/user-login.dto';
+import { UserRespDto } from './dto/user-resp.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { UserService } from './user.service';
 
@@ -73,7 +74,7 @@ export class UserController {
       );
     }
 
-    res.status(HttpStatus.OK).json(user);
+    res.status(HttpStatus.OK).json(new UserRespDto(user));
   }
 
   @Put(':id')

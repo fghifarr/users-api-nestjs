@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserLoginDto } from './dto/user-login.dto';
+import { UserRespDto } from './dto/user-resp.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { UserController } from './user.controller';
 import { User } from './user.entity';
@@ -212,7 +213,7 @@ describe('UserController', () => {
       await userController.findById('1', mockResponse);
 
       expect(mockResponse.status).toHaveBeenCalledWith(HttpStatus.OK);
-      expect(mockResponse.json).toHaveBeenCalledWith(user);
+      expect(mockResponse.json).toHaveBeenCalledWith(new UserRespDto(user));
     });
   });
 

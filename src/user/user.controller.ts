@@ -16,12 +16,10 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiTags,
-  getSchemaPath,
 } from '@nestjs/swagger';
 import { Response } from 'express';
 import { HttpExceptionFilter } from 'src/exceptions/http-exception.filter';
 import { UserCreateDto } from './dto/user-create.dto';
-import { UserLoginDto } from './dto/user-login.dto';
 import { UserRespDto } from './dto/user-resp.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { UserService } from './user.service';
@@ -48,31 +46,6 @@ export class UserController {
 
     res.status(HttpStatus.CREATED).json({
       message: 'Successfully created user: ' + newUser.username,
-    });
-  }
-
-  @ApiOkResponse({ description: 'Successfully logged in' })
-  @ApiBadRequestResponse({ description: 'Bad Request' })
-  @Post('login')
-  async login(@Body() req: UserLoginDto, @Res() res: Response) {
-    const existingUser = await this.userService.findByUsername(req.username);
-    if (!existingUser) {
-      throw new HttpException(
-        `Can't find user with username: ${req.username}`,
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-
-    const user = await this.userService.login(req);
-    if (!user) {
-      throw new HttpException(
-        'Invalid username / password',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-
-    res.status(HttpStatus.OK).json({
-      message: 'Successfully logged in as: ' + user.username,
     });
   }
 

@@ -1,11 +1,5 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  UseFilters,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { HttpExceptionFilter } from 'src/exceptions/http-exception.filter';
 import { Repository } from 'typeorm';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserLoginDto } from './dto/user-login.dto';
@@ -13,7 +7,6 @@ import { UserUpdateDto } from './dto/user-update.dto';
 import { User } from './user.entity';
 
 @Injectable()
-@UseFilters(new HttpExceptionFilter())
 export class UserService {
   constructor(
     @InjectRepository(User)

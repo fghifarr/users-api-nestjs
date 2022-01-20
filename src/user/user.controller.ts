@@ -49,7 +49,7 @@ export class UserController {
     });
   }
 
-  @ApiOkResponse({ description: 'Successfully get user details ' })
+  @ApiOkResponse({ description: 'Successfully get user details' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @Get(':id')
   async findById(@Param('id') id: string, @Res() res: Response) {

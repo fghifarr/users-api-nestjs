@@ -73,4 +73,8 @@ export class UserService {
       );
     }
   }
+
+  async deactivate(id: string) {
+    await this.userRepository.update(id, { isActive: false });
+  }
 }

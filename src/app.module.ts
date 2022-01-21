@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { ProfileHttpModule } from './profile/profile-http.module';
 import { UserHttpModule } from './user/user-http.module';
 
 @Module({
@@ -16,8 +17,9 @@ import { UserHttpModule } from './user/user-http.module';
       synchronize: true,
       autoLoadEntities: true,
     }),
-    UserHttpModule,
     AuthModule,
+    UserHttpModule,
+    ProfileHttpModule,
   ],
 })
 export class AppModule {}
